@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      nav {
+        height: 30%;
+        width: 100%;
+        background-color: grey;
+        color: white;
+        font-size: 50px;
+      }
+      .nav_items {
+        float: right;
+        font-size: 35px;
+        margin-right: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      {{name}}'s Dashboard
+      <div class="nav_items">
+        <a href="/profile">Profile</a> |
+        <a href="/cart">cart | </a>
+        <a href="/user-login">logout</a>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+  </body>
+</html>

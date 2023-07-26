@@ -1,0 +1,51 @@
+{% extends 'homepage.html'%}
+<style>
+  .container {
+    margin-top: 50px;
+  }
+  img {
+    width: 100%;
+  }
+
+  .col-md-8 {
+    padding-left: 50px;
+  }
+  h2 {
+    font-size: 50px;
+  }
+  h3 {
+    font-size: 40px;
+  }
+  h4 {
+    font-size: 30px;
+  }
+  form {
+    margin-top: 50px;
+  }
+  input {
+    font-size: 30px;
+  }
+</style>
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{product.image}}" alt="" class="img-fluid" />
+    </div>
+
+    <div class="col-md-8">
+      <h2>{{product.name}}</h2>
+      <h3>Price: {{product.price}}</h3>
+      <h4>Category: {{product.category}}</h4>
+      <h4>Brand: {{product.brand}}</h4>
+      <h4>Rating: {{product.rating}}</h4>
+      <h4>Stock: {{product.stock}}</h4>
+      <h4>Description: {{product.description}}</h4>
+      <form action="/add-to-cart" method="POST">
+        <input type="hidden" name="product_id" value="{{product.id}}" />
+        <input type="submit" value="Add to cart" />
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
