@@ -1,0 +1,14 @@
+category:
+id 
+time
+name
+image
+
+product:
+id 
+name 
+category.id(FK)
+price
+quantity
+time 
+image

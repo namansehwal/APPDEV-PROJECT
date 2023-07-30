@@ -1,0 +1,118 @@
+{% extends 'user_base.html'%} {% block nav%}
+<style>
+  a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding-left: 10px;
+  }
+  .category {
+    margin-top: 3%;
+    margin-left: 10%;
+    width: 80%;
+    height: 40%;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .category h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: 100;
+  }
+
+  .category ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .category li {
+    float: left;
+  }
+
+  .category li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .category li a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .product {
+    margin-top: 3%;
+    margin-left: 10%;
+    width: 80%;
+    height: 40%;
+    background-color: #948d8d5b;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .product_item {
+    width: 20%;
+    height: 40%;
+    background-color: #3eb31d24;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }
+  .product_item img {
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+  }
+  .product_item h3 {
+    font-size: 20px;
+    font-weight: 100;
+  }
+  .product_item h4 {
+    font-size: 20px;
+    font-weight: 100;
+  }
+  .product_item a {
+    font-size: 20px;
+    font-weight: 100;
+    text-decoration: none;
+    color: black;
+  }
+  a {
+    background-color: white;
+  }
+</style>
+<a href="/admin/new_category/">New Category </a>
+<a href="/admin/new_product/">New Product</a>
+<a href="/admin/summary/">Summary</a>
+{% endblock %} {% block content %}
+
+<center>
+  <h1>Admin Login</h1>
+</center>
+
+<div class="Products">
+  <h1>Products</h1>
+  <div class="product">
+    {% for product in products %}
+    <div class="product_item">
+      <h3><b>{{product.category}}</b></h3>
+      <img src="{{ url_for('static', filename=product.image) }}" alt="" />
+      <h3>{{product.name}}</h3>
+      <h4>Rs. {{product.price}}</h4>
+      <a href="/admin/product/edit/{{product.id}}">Edit</a>
+      <a href="/admin/product/delete/{{product.id}}">Delete</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

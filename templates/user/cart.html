@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container mt-5 mb-5">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="row g-0">
+          <div class="col-md-12">
+            <h1>Shopping Cart</h1>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody id="cart-items">
+                {% if cart_items %} {% for item in cart_items %}
+                <tr>
+                  <th scope="row">{{ loop.index }}</th>
+                  <td>{{ item.product_name }}</td>
+                  <td>₹{{ item.price }}</td>
+                  <td>
+                    <input
+                      type="number"
+                      name="quantity"
+                      value="{{ item.quantity }}"
+                      disabled
+                    />
+                  </td>
+                  <td>₹{{ item.price * item.quantity }}</td>
+                  <td>
+                    <button class="btn btn-danger">Remove</button>
+                  </td>
+                </tr>
+                {% endfor %} {% else %}
+                <tr>
+                  <td colspan="6">Your cart is empty.</td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-end align-items-center">
+              {% if cart_items %}
+              <h4 id="total-amount">Total: ₹{{ total_amount }}</h4>
+              {% endif %}
+              <button class="btn btn-primary ml-3">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
