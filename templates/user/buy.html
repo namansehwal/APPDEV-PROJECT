@@ -51,10 +51,15 @@
           </div>
           <div class="mt-5">
             <span class="fs-1"><h6>Quantity : {{product.si_unit}}</h6></span>
-           
-            <div class="inputs"><input type="number" name="" placeholder="In Kg" value="1"/></div>
+            <form method="POST">
+            <div class="inputs"><input type="number" name="quantity" placeholder="In Kg" value="1"/></div>
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <input type="hidden" name="product_name" value="{{product.name}}">
+            <input type="hidden" name="price" value="{{product.price}}">
+
             <br>
-            <button class="btn btn-outline-success"><b>Add to Cart</b></button>
+            <button type="submit" class="btn btn-outline-success"><b>Add to Cart</b></button>
+            </form>
             </div>
           </div>
           {% else %}

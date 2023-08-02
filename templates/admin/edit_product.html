@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Edit Product</h1>
+      <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Product Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            value="{{product.name}}"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            name="category"
+            required
+            value="{{product.category}}"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            name="price"
+            value="{{product.price}}"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            value="{{product.quantity}}"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="time">Created On:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="time"
+            name="time"
+            value="{{product.time}}"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            name="image"
+            value="{{product.image}}"
+            required
+          />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <!-- Bootstrap JS (optional, only needed if you use Bootstrap components that require JavaScript) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

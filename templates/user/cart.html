@@ -55,9 +55,24 @@
             </table>
             <div class="d-flex justify-content-end align-items-center">
               {% if cart_items %}
-              <h4 id="total-amount">Total: ₹{{ total_amount }}</h4>
+              <h4 id="total-amount">Total: ₹{{ total }}</h4>
+              <form action="/cart/place_order/{{user_id}}" method="POST">
+                <input type="hidden" name="user_id" value="{{ user_id }}" />
+                <input type="hidden" name="total" value="{{ total }}" />
+                <button type="submit" class="btn btn-primary ml-3">
+                  Place Order
+                </button>
+              </form>
+
+              {% else %}
+
+              <button
+                class="btn btn-primary ml-3"
+                onclick="location.href='/home'"
+              >
+                Let's Shop
+              </button>
               {% endif %}
-              <button class="btn btn-primary ml-3">Checkout</button>
             </div>
           </div>
         </div>

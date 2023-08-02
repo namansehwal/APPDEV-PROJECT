@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ecommerce Navbar Design</title>
+
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      
+    </style>
+  </head>
+
+  <body>
+    <div class="main-navbar shadow-lg  ">
+      <div class="top-navbar">
+        <div class="container-fluid">
+          <div class="row ">
+            <div
+              class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block"
+            >
+              <h5 class="brand-name">EcoMart</h5>
+            </div>
+            <div class="col-md-5 my-auto">
+              
+            </div>
+            <div class="col-md-5 my-auto">
+              <ul class="nav justify-content-end">
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/summary/">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
+                      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                      <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                    </svg>
+                    <i class="bi bi-calendar2"></i> Summary
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-user"></i> Admin
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="dropdown-item" href="/admin/new_product/"
+                        ><i class="fa fa-user"></i> Add New Product</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/admin/manage_category/"
+                        ><i class="fa fa-list"></i> Add new Category</a
+                      >
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="/admin/summary/"
+                          ><i class="fa fa-list"></i>Summary</a
+                        >
+                      </li>
+                    <li>
+                      <a class="dropdown-item" href="/logout"
+                        ><i class="fa fa-sign-out"></i> Logout</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+<!-- products -->
+ <section id = "collection" class = "py-5">
+        <div class = "container">
+            <div class = "title text-center">
+                <h1 class = "position-relative d-inline-block">New Collection</h1>
+            </div>
+
+            <div class = "row g-0">
+                <div class = "d-flex flex-wrap justify-content-center mt-5 filter-button-group">
+
+                    <button type = "button" class = "btn m-2 text-dark active active-filter-btn" data-filter = "*">All</button>
+                    {% for category in categories %}
+                    <button type = "button" class = "btn m-2 text-dark" data-filter = ".{{category.name}}">{{category.name}}</button>
+                    {% endfor %}
+                </div>
+
+                <div class = "collection-list mt-4 row gx-0 gy-4">
+
+
+                  {% for product in products %}
+                  <div class="col col-lg-2 shadow-lg border border-secondary m-5 list {{product.category}}">
+                    <div class="collection-img position-relative">
+                        <img src="{{ url_for('static', filename=product.image) }}" class="w-100">
+                        
+                    </div>
+                    <div class="text-center">
+                        <div class="rating mt-3">
+                            <span class="text-danger"><i class="fa fa-star checked"></i></span>
+                            <span class="text-primary"><i class="fa fa-star checked"></i></span>
+                            <span class="text-info"><i class="fa fa-star checked"></i></span>
+                            <span class="text-primary"><i class="fa fa-star checked"></i></span>
+                            <span class="text-danger"><i class="fa fa-star"></i></span>
+                        </div>
+                        <p class="text-capitalize my-1 "><h2 class="opacity-75">{{product.name}}</h2></p>
+                        <span class="fw-bold">$ {{product.price}}</span>
+                        <button class="btn btn-outline-secondary d-block w-100 mt-2 mb-1 ml-1 " onclick="location.href='/admin/product/edit/{{product.id}}'">Edit</button>
+                    </div>
+                </div>
+                {% endfor %}
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script>
+$('.collection-list').isotope({
+  itemSelector: '.list',
+  layoutMode: 'fitRows',
+  
+})
+$('.filter-button-group').on( 'click', 'button', function() {
+  $('.active-filter-btn').removeClass('active');
+  $(this).addClass('active');
+  var filterValue = $(this).attr('data-filter');
+  $('.collection-list').isotope({ filter: filterValue });
+});
+window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#activated';
+        window.location.reload();
+    }
+}
+
+    </script>
+  </body>
+</html>
