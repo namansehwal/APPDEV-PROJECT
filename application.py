@@ -6,7 +6,7 @@ current_dir = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = 'static/'
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 app.config['SECRET_KEY'] = os.urandom(24)
 

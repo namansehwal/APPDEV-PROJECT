@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, redirect
 from vault import User, Product, Category, update ,Cart, agent
 from werkzeug.utils import secure_filename
 from application import app
+import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
+
 import os,time
 from authentication import *
 
@@ -151,12 +152,17 @@ def summary():
         categoryname.append(category[i].name)
         category_product_count.append(len(agent.query(Product).filter(Product.category == category[i].name).all()))   
             
-  
     
-    x = np.array(categoryname)
-    y = np.array(category_product_count)
+   
 
-    plt.bar(x,y)
-    plt.savefig('static/category_count.png')   
+    plt.figure(figsize=(20, 10))  
+    sns.barplot(x=categoryname, y=category_product_count)
+    plt.xticks(rotation=35)  # Rotate x-axis labels by 45 degrees
+    plt.savefig('static/category_count.png')
+     
     plt.close()
     return render_template('admin/summary.html')
+
+
+ 
+   

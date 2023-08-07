@@ -1,17 +1,17 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from application import app
-from vault import User, agent
+from vault import User, agent, Category, Product
 import vault
 
 
 
 
 
-@app.route('/')
-def index():
-    if 'user' in session:
-        return render_template('user/homepage.html')
-    return render_template('login/new.html')
+# @app.route('/')
+# def index():
+#     if 'user' in session:
+#         return render_template('user/homepage.html')
+#     return render_template('login/new.html')
 
 @app.route('/login', methods=['POST'])
 def login_post():
@@ -74,6 +74,8 @@ def logout():
     session.pop('admin', None)
     return redirect('/')
 
-
+@app.route('/testing')
+def testing():
+    return render_template('user/index.html', user=agent.query(User).filter(User.id == 2).first(), categories=agent.query(Category).all(), products=agent.query(Product).all())
  
 

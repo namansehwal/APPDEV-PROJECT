@@ -6,15 +6,26 @@ from authentication import *
 
 
 
-
+@app.route('/')
 @app.route('/home')
 def home():
-    print(session['user'])
-    user = agent.query(User).filter(User.id == session['user']).first()
-    categories = agent.query(Category).all()
-    products = agent.query(Product).all()
-    return render_template('user/homepage.html', user=user, categories=categories, products=products)
+    if 'user' in session:
+        user = agent.query(User).filter(User.id == session['user']).first()
+        categories = agent.query(Category).all()
+        products = agent.query(Product).all()
+        return render_template('user/index.html', user=user, categories=categories, products=products)
+    else:
+        return render_template('login/new.html')
 
+
+@app.route('/category/')
+def category():
+    if 'user' in session:
+        categories = agent.query(Category).all()
+        user = agent.query(User).filter(User.id == session['user']).first()
+        return render_template('user/category.html', categories=categories, user=user)
+    else:
+        return render_template('login/new.html')
 
 @app.route('/profile/<int:pid>')
 def profile(pid):
@@ -80,3 +91,4 @@ def place_order(pid):
 def my_orders(pid):
     orders = agent.query(Order_Detail).filter(Order_Detail.user_id == pid).all()
     return render_template('user/orders.html', orders=orders)    
+

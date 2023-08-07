@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="navigation">
+        <h1>EcoMart</h1>
+
+        <input
+          type="text"
+          placeholder="Search here"
+          class="searchC"
+          value=""
+          onChange="{handleChangeSearchValue}"
+        />
+
+        <div class="right-nav">
+          <p><a href="/category">Categories</a></p>
+          <p><a href="/cart/{{user.id}}">Cart</a></p>
+
+          <div class="dropdown">
+            <p class="my-name">{{user.name}}</p>
+
+            <div class="dropdown-content">
+              <p class="drop-menu">
+                <a href="/profile/{{user.id}}">My Profile</a>
+              </p>
+              <p class="drop-menu">
+                <a href="/orders/{{user.id}}"> My Orders</a>
+              </p>
+              <p class="drop-menu"><a href="/logout">Logout</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-menu-container">
+        {% for category in categories %}
+        <button type="button" class="cat-menu">
+          <a href="#{{category.name}}">{{category.name}}</a>
+        </button>
+        {% endfor %}
+      </div>
+
+      <div class="lower">
+        <br />
+        <div class="container">
+          {% for category in categories %}
+          <div class="category" id="{{category.name}}">
+            <h1>{{category.name}}</h1>
+            <div class="product-list">
+              {% for product in products %} {% if product.category ==
+              category.name %}
+              <div class="product" name="{{product.name}}">
+                <div class="product-image">
+                  <img
+                    src="/static/assets/products/{{product.image }}"
+                    alt=""
+                  />
+                </div>
+                <div class="product-info">
+                  <h2 class="product-name">{{product.name}}</h2>
+                  <p>Product Description</p>
+                  <p><b>₹{{product.price}}</b></p>
+                  <button
+                    class="add-to-cart"
+                    onclick="location.href='product/{{product.id}}'"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+              {% endif %} {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
