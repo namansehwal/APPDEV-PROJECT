@@ -8,8 +8,20 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/header.css') }}"
+    />
   </head>
+
   <body>
+    <br />
+    <div class="main">
+      <div class="navigation">
+        <h2><a href="/">EcoMart</a></h2>
+      </div>
+    </div>
     <section class="vh-50" style="background-color: #eee">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -52,7 +64,9 @@
               </div> -->
 
                   <div class="col-10">
-                    <button type="submit" class="btn btn-warning">Add</button>
+                    <button type="submit" class="btn btn-warning">
+                      Update
+                    </button>
                   </div>
                 </form>
 
@@ -70,7 +84,13 @@
                     <tr>
                       <th scope="row">{{category.id}}</th>
                       <td>{{category.name}}</td>
-                      <td>{{category.image}}</td>
+                      <td>
+                        <a
+                          href="http://127.0.0.1:5000/static/assets/categories/{{category.image}}"
+                          target="blank"
+                          >{{category.image}}</a
+                        >
+                      </td>
                       <td>
                         <button type="submit" class="btn btn-danger">
                           <a

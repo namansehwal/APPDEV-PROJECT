@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Orders</title>
+    <title>Shopping Cart</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -22,50 +22,58 @@
         <h2><a href="/">EcoMart</a></h2>
       </div>
     </div>
+
     <div class="container mt-5 mb-5">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded">
         <div class="row g-0">
           <div class="col-md-12">
-            <h1>My Orders</h1>
+            <h1>Order Details (ID: #{{order.id}})</h1>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Order ID</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Total Amount</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">View</th>
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Subtotal</th>
                 </tr>
               </thead>
-              <tbody id="order-items">
-                {% if orders %} {% for order in orders %}
+              <tbody id="cart-items">
+                {% if cart_items %} {% for item in items %}
                 <tr>
-                  <th scope="row">{{ loop.index }}</th>
-                  <td>{{ order.id }}</td>
-                  <td>{{ order.created_at }}</td>
-                  <td>₹{{ order.total}}</td>
-                  <td>Will be delivered Soon.</td>
-                  <td>
-                    <a href="/ordered_products/{{order.id}}">
-                      <button class="btn btn-success">View</button>
-                    </a>
-                  </td>
+                  <!-- <th scope="row">{{ loop.index }}</th> -->
+                  <td>{{ item.product_name }}</td>
+                  <td>₹{{ item.amount }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>₹{{ item.amount }}</td>
                 </tr>
                 {% endfor %} {% else %}
                 <tr>
-                  <td colspan="5">No orders found.</td>
+                  <td colspan="6">Your cart is empty.</td>
                 </tr>
                 {% endif %}
               </tbody>
             </table>
             <div class="d-flex justify-content-end align-items-center">
+              {% if cart_items %}
+              <h4 id="total-amount">Total: ₹{{ order.total }}</h4>
+
+              <button
+                class="btn btn-primary ml-3"
+                onclick="location.href='/orders/{{user_id}}'"
+              >
+                Go to Orders
+              </button>
+
+              {% else %}
+
               <button
                 class="btn btn-primary ml-3"
                 onclick="location.href='/home'"
               >
-                Continue Shopping
+                Let's Shop
               </button>
+              {% endif %}
             </div>
           </div>
         </div>

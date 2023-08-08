@@ -37,34 +37,36 @@ class Category(Base):
     image = Column('image',String)
     date = Column('date',String)
     
-    def __init__(self, name, image, date):
+    def __init__(self, name, image):
         self.name = name
         self.image = image
-        self.date = date
+        self.date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 class Product(Base):
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column('name',String)
     category = Column('category',String)
-    category_id = Column('category_id', Integer, foreign_key='categories.id')
+    category_id = Column('category_id', Integer)
     price = Column('price', Integer)
     quantity = Column('quantity', Integer)
     time = Column('time', Integer)
     image = Column('image', String)
     description = Column('description', String)
     si_unit = Column('si_unit', Integer)
+    best_before = Column('best_before', String)
     
-    def __init__(self, name, category, category_id, price, quantity, time, image, description, si_unit):
+    def __init__(self, name, category, category_id, price, quantity, image, description, si_unit, best_before):
         self.name = name
         self.category = category
         self.category_id = category_id
         self.price = price
         self.quantity = quantity
-        self.time = time
+        self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.image = image
         self.description = description
         self.si_unit = si_unit
+        self.best_before = best_before
 
 class Cart(Base):
     __tablename__ = 'cart'
@@ -93,16 +95,20 @@ class Order_Items(Base):
     user_id = Column('user_id', Integer)
     order_id = Column('order_id', Integer)
     product_id = Column('product_id', Integer)
+    product_name = Column('product_name', String)
+    product_price = Column('product_price', Integer)
     quantity = Column('quantity', Integer)
     amount = Column('amount', Integer)
     created_at = Column('created_at', String)
     
-    def __init__(self, user_id, order_id, product_id, quantity, amount):
+    def __init__(self, user_id, order_id, product_id, quantity, amount, product_name, product_price):
         self.user_id = user_id
         self.order_id = order_id
         self.product_id = product_id
         self.quantity = quantity
         self.amount = amount
+        self.product_name = product_name
+        self.product_price = product_price
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 class Order_Detail(Base):
@@ -118,20 +124,5 @@ class Order_Detail(Base):
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 
-agent.commit()
-
 # Base.metadata.create_all(engine)
 
-
-# category = agent.query(Category).all()
-    
-# categoryname = []
-# category_product_count = []
-
-# for i in range(len(category)):
-#     categoryname.append(category[i].name)
-#     category_product_count.append(len(agent.query(Product).filter(Product.category == category[i].name).all()))
-
-
-# print(categoryname)
-# print(category_product_count)  

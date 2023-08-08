@@ -20,22 +20,20 @@
           type="text"
           placeholder="Search here"
           class="searchC"
-          id="inputField"
+          value=""
+          onChange="{handleChangeSearchValue}"
         />
 
         <div class="right-nav">
-          <p><a href="/category">Categories</a></p>
-          <p><a href="/cart/{{user.id}}">Cart</a></p>
+          <p><a href="/admin/new_product/">Add New Product</a></p>
+          <p><a href="/admin/manage_category/">Manage Category</a></p>
 
           <div class="dropdown">
             <p class="my-name">{{user.name}}</p>
 
             <div class="dropdown-content">
               <p class="drop-menu">
-                <a href="/profile/{{user.id}}">My Profile</a>
-              </p>
-              <p class="drop-menu">
-                <a href="/orders/{{user.id}}"> My Orders</a>
+                <a href="/admin/summary/">Summary</a>
               </p>
               <p class="drop-menu"><a href="/logout">Logout</a></p>
             </div>
@@ -73,9 +71,9 @@
                   <p><b>₹{{product.price}}</b></p>
                   <button
                     class="add-to-cart"
-                    onclick="location.href='product/{{product.id}}'"
+                    onclick="location.href='/admin/product/edit/{{product.id}}'"
                   >
-                    Buy Now
+                    Edit Product
                   </button>
                 </div>
               </div>
@@ -86,15 +84,5 @@
         </div>
       </div>
     </div>
-    <script>
-      const inputField = document.getElementById("inputField");
-
-      inputField.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-          const enteredText = inputField.value;
-          window.location.href = "http://127.0.0.1:5000/search/" + enteredText;
-        }
-      });
-    </script>
   </body>
 </html>

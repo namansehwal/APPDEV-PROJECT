@@ -8,8 +8,26 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/header.css') }}"
+    />
   </head>
+
   <body>
+    <br />
+    <div class="main">
+      <div class="navigation">
+        <h2><a href="/">EcoMart</a></h2>
+      </div>
+    </div>
+    <marquee behavior="scroll" direction="left" scrollamount="20">
+      <h3>
+        Get 25% off on your first order. Use code:
+        <button class="btn-danger">ECOMART25</button>
+      </h3></marquee
+    >
     <div class="container mt-5">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded">
         <div class="row g-0">

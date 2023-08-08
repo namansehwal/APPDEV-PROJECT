@@ -8,9 +8,19 @@
   rel="stylesheet"
   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 />
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/header.css') }}"
+    />
 </head>
 <body>
-    
+  <br />
+  <div class="main">
+    <div class="navigation">
+      <h2><a href="/">EcoMart</a></h2>
+    </div>
+  </div>
 
 <div class="container mt-5 mb-5 ">
   <div class="card shadow-lg p-3 mb-5 bg-white rounded">
@@ -30,7 +40,7 @@
       </div>
       <div class="col-md-6">
         <div class="p-3 right-side">
-            <button class="btn btn-outline-dark"> {{product.category}}</button>
+            <button class="btn btn-outline-dark" onclick="location.href='/home#{{product.category}}'"> {{product.category}}</button>
           <div class="d-flex justify-content-between align-items-center">
             
             <h1>{{product.name}}</h1>
@@ -43,6 +53,7 @@
             </p>
           </div>
           <h3>₹{{product.price}}</h3>
+          <p>Best Before <b>{{product.best_before}}</b></p>
           {% if (product.quantity > 1) %}
           <button type="button" class="btn btn-light">In Stock</button>
           <div class="ratings d-flex flex-row align-items-center">

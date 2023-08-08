@@ -5,7 +5,7 @@ from application import app
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import os,time
+import os
 from authentication import *
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -20,7 +20,7 @@ def image(filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         if filename:
-            image = '/static/' + filename
+            image = '/static/products' + filename
         return filename    
 
 
@@ -31,7 +31,7 @@ def admin():
     user = agent.query(User).filter(User.id == session['admin']).first()
     categories = agent.query(Category).all()
     products = agent.query(Product).all()
-    return render_template('admin/admin.html', user=user, categories=categories, products=products)
+    return render_template('admin/index.html', user=user, categories=categories, products=products)
 
 
 
@@ -59,7 +59,7 @@ def new_category():
             image = '/static/' + filename
 
         # Create a new category and add it to the database
-        agent.add(Category(name=name, image=image, date=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+        agent.add(Category(name=name, image=image))
         agent.commit()
         return redirect('/admin/manage_category/')
 
@@ -100,14 +100,14 @@ def new_product():
             category=request.form['category'],
             price=int(request.form['price']),
             quantity=int(request.form['quantity']),
-            time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
             image=image(request.files['file']),
             category_id= (agent.query(Category).filter(Category.name == request.form['category']).first()).id,
             description=request.form['description'],
-            si_unit=request.form['si_unit']
+            si_unit=request.form['si_unit'],
+            best_before=request.form['best_before']
         )
 
-        # Add the new product to the database
+        #  Add the new product to the database
         agent.add(new_product)
         agent.commit()
 
@@ -165,4 +165,5 @@ def summary():
 
 
  
+   
    
