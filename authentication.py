@@ -24,7 +24,7 @@ def login_post():
             session['user'] = validation[0].id
             return redirect('/home')
         flash('Invalid Credentials')
-        return redirect('/')
+        return render_template('login/new.html', popup=True)
     return redirect('/')
 
 
@@ -62,8 +62,7 @@ def admin_login():
                 session['admin'] = validation.id
                 print('admin validated')
                 return redirect('/admin')
-        flash('Invalid Credentials')
-        return redirect('/')
+        return render_template('login/new.html', popup=True)
     return redirect('/')      
 
           

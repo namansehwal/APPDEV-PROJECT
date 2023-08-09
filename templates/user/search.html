@@ -43,7 +43,7 @@
           {% for category in categories %}
           <div class="product cat-card">
             <div class="product-image">
-              <img src="/static/assets/categories/{{category.image}}" alt="" />
+              <img src="/static/assets/{{category.image}}" alt="" />
             </div>
             <div class="product-info">
               <br />
@@ -60,7 +60,7 @@
           {% endfor %} {% for product in products %}
           <div class="product" name="{{product.name}}">
             <div class="product-image">
-              <img src="/static/assets/products/{{product.image }}" alt="" />
+              <img src="/static/assets/{{product.image }}" alt="" />
             </div>
             <div class="product-info">
               <h2 class="product-name">{{product.name}}</h2>
@@ -68,7 +68,7 @@
               <p><b>₹{{product.price}}</b></p>
               <button
                 class="add-to-cart search-buy"
-                onclick="location.href='product/{{product.id}}'"
+                onclick="location.href='http://127.0.0.1:5000/product/{{product.id}}'"
               >
                 Buy Now
               </button>

@@ -7,7 +7,7 @@ from flask_restful import Api
 
 
 current_dir = os.path.abspath(os.path.dirname(__file__))
-UPLOAD_FOLDER = 'static/'
+UPLOAD_FOLDER = 'static/assets/'
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -27,7 +27,8 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
 from authentication import *
-from controller import *
+from admin_routes import *
+from user_routes import *
 
 if __name__ == '__main__':
     Bootstrap(app)

@@ -120,6 +120,7 @@ def search(search_value):
         user = agent.query(User).filter(User.id == session['user']).first()
         categories = agent.query(Category).filter(Category.name.like('%'+search_value+'%')).all()
         products = agent.query(Product).filter(Product.name.like('%'+search_value+'%')).all()
+        
         return render_template('user/search.html', user=user, categories=categories, products=products,sv=search_value)
        
         
