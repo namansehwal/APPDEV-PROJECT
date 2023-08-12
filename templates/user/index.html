@@ -9,9 +9,29 @@
       type="text/css"
       href="{{ url_for('static',filename='styles/style.css') }}"
     />
+    <style>
+      #myImage {
+        width: 50%;
+        height: 50%;
+        margin-left: 25%;
+        object-fit: cover;
+        align-content: center;
+        object-position: center;
+      }
+    </style>
   </head>
 
   <body>
+    <div id="myDiv">
+      <img id="myImage" src="static/loading.gif" />
+    </div>
+    <br />
+
+    <script type="text/javascript">
+      setTimeout(function () {
+        document.getElementById("myDiv").style.display = "none";
+      }, 1000); // 5 seconds
+    </script>
     <div class="main">
       <div class="navigation">
         <h1>EcoMart</h1>
@@ -43,19 +63,34 @@
         </div>
       </div>
 
-      <div class="cat-menu-container">
-        {% for category in categories %}
-        <button type="button" class="cat-menu">
-          <a href="#{{category.name}}">{{category.name}}</a>
+      <div class="cat-menu-container myBtnContainer">
+        {% for category in categories %} {% if loop.first %}
+        <button
+          type="button"
+          class="cat-menu btn active"
+          onclick="filterSelection('{{category.name}}')"
+        >
+          {{category.name}}
         </button>
-        {% endfor %}
+        {% else %}
+        <button
+          type="button"
+          class="cat-menu btn"
+          onclick="filterSelection('{{category.name}}')"
+        >
+          {{category.name}}
+        </button>
+        {% endif %} {% endfor %}
       </div>
 
       <div class="lower">
         <br />
         <div class="container">
           {% for category in categories %}
-          <div class="category" id="{{category.name}}">
+          <div
+            class="category filterDiv {{category.name}}"
+            id="{{category.name}}"
+          >
             <h1>{{category.name}}</h1>
             <div class="product-list">
               {% for product in products %} {% if product.category ==
@@ -89,9 +124,55 @@
       inputField.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
           const enteredText = inputField.value;
-          window.location.href = "http://127.0.0.1:5000/search/" + enteredText;
+          window.location.href =
+            window.location.href + "/search/" + enteredText;
         }
       });
+      //filtering products
+      filterSelection("all");
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+      }
+
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+            element.className += " " + arr2[i];
+          }
+        }
+      }
+
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+        }
+        element.className = arr1.join(" ");
+      }
+
+      // Add active class to the current button (highlight it)
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
     </script>
   </body>
 </html>

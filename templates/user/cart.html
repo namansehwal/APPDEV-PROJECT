@@ -28,7 +28,7 @@
         <div class="row g-0">
           <div class="col-md-12">
             <h1>Shopping Cart</h1>
-            <table class="table">
+            <table class="table table-bordered table-responsive-xl">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -45,14 +45,7 @@
                   <th scope="row">{{ loop.index }}</th>
                   <td>{{ item.product_name }}</td>
                   <td>₹{{ item.price }}</td>
-                  <td>
-                    <input
-                      type="number"
-                      name="quantity"
-                      value="{{ item.quantity }}"
-                      disabled
-                    />
-                  </td>
+                  <td>{{item.quantity}}</td>
                   <td>₹{{ item.price * item.quantity }}</td>
                   <td>
                     <a href="/cart/del/{{item.cart_id}}">
@@ -60,7 +53,10 @@
                     </a>
                   </td>
                 </tr>
-                {% endfor %} {% else %}
+                {% endfor %}
+                
+                </tr>
+                {% else %}
                 <tr>
                   <td colspan="6">Your cart is empty.</td>
                 </tr>
@@ -99,6 +95,7 @@
               {% endif %}
             </div>
             <br />
+            {% if cart_items %}
             <input
               type="text"
               id="coupon_code"
@@ -113,6 +110,8 @@
             >
               Apply Coupon
             </button>
+            {% endif %}
+            <h5 class="mt-3" style="color: green" id="applied"></h5>
           </div>
         </div>
       </div>
@@ -131,7 +130,7 @@
 
           totalAmountElement.setAttribute("value", discountedTotal);
           document.getElementById("total-amount").textContent =
-            "Total: ₹" + discountedTotal;
+            "Total: ₹ (" + currentTotal + "-25%) =" + discountedTotal;
 
           couponInput.setAttribute("disabled", true);
           document
@@ -139,6 +138,8 @@
             .setAttribute("disabled", true);
 
           alert("Coupon applied: 25% off!");
+          document.getElementById("applied").textContent =
+            "You have successfully availed 25% off using ECOMART25";
         } else {
           alert("Invalid coupon code. Please enter a valid code.");
         }
@@ -146,6 +147,26 @@
       function placeOrder() {
         alert("Order placed successfully!");
       }
+      // Current URL: https://my-website.com/page_a
+// Current URL: https://my-website.com/page_a
+const nextURL = 'https://google.com';
+
+// This will create a new entry in the browser's history, reloading afterwards
+window.location.href = nextURL;
+
+// This will replace the current entry in the browser's history, reloading afterwards
+window.location.assign(nextURL);
+
+// This will replace the current entry in the browser's history, reloading afterwards
+window.location.replace(nextURL);
+//set the timeout to 3 seconds
+function greet() {
+    window.stop();
+}
+
+setTimeout(greet, 200);
+console.log('This message is shown first');
+
     </script>
   </body>
 </html>

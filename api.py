@@ -23,7 +23,7 @@ class CategoryAPI(Resource):
                 for cat in category:
                     result[cat.id] = {
                         "name": cat.name,
-                        "image": "http://127.0.0.1:5000/static/assets/categories/"
+                        "image": "http://127.0.0.1:5000/static/assets/"
                         + cat.image,
                     }
 
@@ -95,13 +95,14 @@ class CategoryAPI(Resource):
 
 class ProductAPI(Resource):
     def get(self, product_id=None):
+        agent.flush()
         if product_id:
             product = agent.query(Product).filter(Product.id == product_id).first()
 
             if product:
                 return {
                     "name": product.name,
-                    "image": "http://127.0.0.1:5000/static/assets/products/"
+                    "image": "http://127.0.0.1:5000/static/assets/"
                     + product.image,
                     "quantity": product.quantity,
                     "price": product.price,
@@ -116,7 +117,7 @@ class ProductAPI(Resource):
                 for pro in product:
                     result[pro.id] = {
                         "name": pro.name,
-                        "image": "http://127.0.0.1:5000/static/assets/products/"
+                        "image": "http://127.0.0.1:5000/static/assets/"
                         + pro.image,
                         "quantity": pro.quantity,
                         "price": pro.price,
@@ -125,6 +126,7 @@ class ProductAPI(Resource):
                 return result
 
     def post(self):
+        agent.flush()
         data = request.get_json()
         name = data.get("name")
         email = data.get("email")
@@ -153,12 +155,13 @@ class ProductAPI(Resource):
             return {"message": "Admin not found"}, 404
 
     def put(self, product_id):
-        product = Product.query.filter_by(id=product_id).first()
+        agent.flush()
+        product = agent.query(Product).filter(Product.id == product_id).first()
         data = request.get_json()
         name = data.get("name")
         email = data.get("email")
         password = data.get("password")
-        image = "/static/temp.jpg"
+        image = data.get("image")
         quantity = data.get("quantity")
         price = data.get("price")
         category = data.get("category")
@@ -173,23 +176,24 @@ class ProductAPI(Resource):
         )
         if admin and admin.admin == 1:
             if product:
-                product.name=name
-                product.image=image
-                product.quantity=quantity
-                product.price=price
-                product.category=category 
-                product.category_id=category_id 
-                product.description=description
-                product.si_unit=si_unit
-                agent.flush()
+                product.name = name
+                product.image = image
+                product.quantity = quantity
+                product.price = price
+                product.category = category
+                product.category_id = category_id
+                product.description = description
+                product.si_unit = si_unit
+                
                 agent.commit()
-                return {"message": "product name changed"}, 201
+                return {"message": "Product Updated Successfully!!"}, 201
             else:
                 return {"message": "product not found"}, 404
         else:
-            return {"message": "Not authorized"}
+            return {"message": "Not authorized, invalid credentials provided!!!"}
 
     def delete(self, product_id):
+        agent.flush()
         data = request.get_json()
         email = data.get("email")
         password = data.get("password")
@@ -201,11 +205,10 @@ class ProductAPI(Resource):
         )
         if admin and admin.admin == 1:
             try:
-                Product.query.filter_by(id=product_id).delete()
-                agent.flush()
+                agent.query(Product).filter(Product.id == product_id).delete()
                 agent.commit()
-                return {"message": "product deleted"}, 201
+                return {"message": "Product deleted successfully!"}, 201
             except:
                 return {"message": "product not found"}, 404
         else:
-            return {"message": "Not authorized"}
+            return {"message": "Not authorized, invalid credentials provided!!!"}

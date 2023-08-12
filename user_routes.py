@@ -77,9 +77,11 @@ def car_delete(cid):
 @app.route('/cart/place_order/<int:pid>', methods=['POST'])
 def place_order(pid):
     if request.method == 'POST':
+        
         new_order = Order_Detail(user_id=int(request.form['user_id']),total=int(request.form['total']))
         agent.add(new_order)
         agent.commit()
+        
         cart = agent.query(Cart).filter(Cart.user_id == pid).all()
         for i in range(len(cart)):
             new_order_item = Order_Items(

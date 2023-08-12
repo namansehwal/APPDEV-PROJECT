@@ -124,5 +124,10 @@ class Order_Detail(Base):
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 
-# Base.metadata.create_all(engine)
-
+# # Base.metadata.create_all(engine)
+# user = User('sample', 'sample@mail.com', 'sample', 'sample', 'sample')
+# agent.add(user)
+# agent.commit()
+# agent.query(Product).filter(Product.id == 37).delete()
+# agent.commit()
+# print(*[i.name for i in agent.query(Product).all()], sep='\n')
