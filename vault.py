@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, update, delete
+from sqlalchemy import create_engine, Column, Integer, String, update, delete, func
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 import time
@@ -8,8 +8,6 @@ Session = sessionmaker(bind=engine)
 
 Base = declarative_base()
 agent = Session()
-
-
 
 class User(Base):
     __tablename__ = 'users'
@@ -28,8 +26,6 @@ class User(Base):
         self.address = address
         self.phone_number = phone_number
   
-
-
 class Category(Base):
     __tablename__ = 'categories'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -38,6 +34,7 @@ class Category(Base):
     date = Column('date',String)
     
     def __init__(self, name, image):
+        name = name.rstrip()
         self.name = name
         self.image = image
         self.date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -87,8 +84,6 @@ class Cart(Base):
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 
-
-
 class Order_Items(Base):
     __tablename__ = 'order_items'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -123,6 +118,10 @@ class Order_Detail(Base):
         self.total = total
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
+<<<<<<< Updated upstream
 
 # Base.metadata.create_all(engine)
+=======
+# # Base.metadata.create_all(engine)
+>>>>>>> Stashed changes
 

@@ -3,16 +3,6 @@ from application import app
 from vault import User, agent, Category, Product
 import vault
 
-
-
-
-
-# @app.route('/')
-# def index():
-#     if 'user' in session:
-#         return render_template('user/homepage.html')
-#     return render_template('login/new.html')
-
 @app.route('/login', methods=['POST'])
 def login_post():
     if request.method == 'POST':
@@ -24,13 +14,10 @@ def login_post():
             session['user'] = validation[0].id
             return redirect('/home')
         flash('Invalid Credentials')
-        return render_template('login/new.html', popup=True)
+        return render_template('login/login.html', popup=True)
     return redirect('/')
 
-
-
-
-@app.route('/signup', methods=['POST', 'GET'])
+@app.route('/register', methods=['POST', 'GET'])
 def signup():
     
     if request.method == 'POST':
@@ -47,9 +34,10 @@ def signup():
         validation = agent.query(User).filter(User.email == email).filter(User.password == password).all()
         session['user'] = validation[0].id
         return redirect('/home')
-    
+    elif request.method == 'GET':
+        return render_template('login/register.html')    
 
-@app.route('/admin_login', methods=['POST'])
+@app.route('/admin_login', methods=['POST', 'GET'])
 def admin_login():
     if request.method == 'POST':
         email = request.form['email']
@@ -62,11 +50,10 @@ def admin_login():
                 session['admin'] = validation.id
                 print('admin validated')
                 return redirect('/admin')
-        return render_template('login/new.html', popup=True)
-    return redirect('/')      
-
-          
-
+        return render_template('login/admin_login.html', popup=True)
+    else:
+        return render_template('login/admin_login.html')
+         
 @app.route('/logout')
 def logout():
     session.pop('user', None)

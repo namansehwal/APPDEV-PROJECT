@@ -5,17 +5,17 @@ import os,time
 from authentication import *
 
 
-
 @app.route('/')
 @app.route('/home')
 def home():
     if 'user' in session:
         user = agent.query(User).filter(User.id == session['user']).first()
-        categories = agent.query(Category).all()
-        products = agent.query(Product).all()
-        return render_template('user/index.html', user=user, categories=categories, products=products)
+        categories = agent.query(Category).order_by(Category.id.desc()).all()
+        products = agent.query(Product).order_by(Product.id.desc()).all()
+        recent_products = agent.query(Product).order_by(Product.id.desc()).limit(5).all()
+        return render_template('user/index.html', user=user, categories=categories, products=products, recent_products=recent_products)
     else:
-        return render_template('login/new.html')
+        return render_template('login/login.html')
 
 
 @app.route('/category/')
@@ -29,8 +29,11 @@ def category():
 
 @app.route('/profile/<int:pid>')
 def profile(pid):
-    user = agent.query(User).filter(User.id == pid).first()
-    return render_template('user/profile.html', user=user)
+    if 'user' not in session:
+        return render_template('login/login.html')
+    else:
+        user = agent.query(User).filter(User.id == pid).first()
+        return render_template('user/profile.html', user=user)
 
 
 @app.route('/product/<int:pid>', methods=['POST', 'GET'])
@@ -55,22 +58,26 @@ def product(pid):
             item = agent.query(Product).filter(Product.id == pid).first()
         
             return render_template('user/buy.html', product=item)
+    else:
+        return render_template('login/login.html')    
 
 @app.route('/cart/<int:pid>')
 def cart(pid):
-    # if 'user' in session:
+    if 'user' in session:
         # Fetch the product with the given ID and display it
             product = agent.query(Cart).filter(Cart.user_id == pid).all() 
             total = sum([product[i].price*product[i].quantity for i in range(len(product))])
-            print(total)
             return render_template('user/cart.html', cart_items=product, total=total, user_id=session['user'])
+    else:
+        return render_template('login/login.html')    
+        
 @app.route('/cart/del/<int:cid>')
 def car_delete(cid):
     if request.method == 'GET':
         # Delete the product with the given ID from the database
         agent.query(Cart).filter(Cart.cart_id == cid).delete()
         agent.commit()
-        print(session['user'])
+        
         return redirect('/cart/'+str(session['user']))
 
 
@@ -102,25 +109,30 @@ def place_order(pid):
     
 @app.route('/orders/<int:pid>')
 def my_orders(pid):
-    orders = agent.query(Order_Detail).filter(Order_Detail.user_id == pid).all()
-    return render_template('user/orders.html', orders=orders)    
+    if 'user' not in session:
+        return render_template('login/login.html')
+    else:
+        orders = agent.query(Order_Detail).filter(Order_Detail.user_id == pid).all()
+        return render_template('user/orders.html', orders=orders)    
 
 @app.route('/ordered_products/<int:oid>')
 def ordered_products(oid):
-    # if 'user' in session:
-        # Fetch the product with the given ID and display it
-            products = agent.query(Order_Items).filter(Order_Items.order_id == oid).all() 
-            order = agent.query(Order_Detail).filter(Order_Detail.id == oid).first()
-            
-            return render_template('user/ordered_products.html', items=products, order=order, user_id=session['user'], cart_items=order)
+    if 'user' not in session:
+        return render_template('login/login.html')
+    else:
+        products = agent.query(Order_Items).filter(Order_Items.order_id == oid).all() 
+        order = agent.query(Order_Detail).filter(Order_Detail.id == oid).first()
+        
+        return render_template('user/ordered_products.html', items=products, order=order, user_id=session['user'], cart_items=order)
         
         
-@app.route('/search/<search_value>')
-def search(search_value):
+@app.route('/search', methods=['POST', 'GET'])
+def search():
+    if request.method == 'POST':
+        search_value = request.form['search']
         user = agent.query(User).filter(User.id == session['user']).first()
         categories = agent.query(Category).filter(Category.name.like('%'+search_value+'%')).all()
         products = agent.query(Product).filter(Product.name.like('%'+search_value+'%')).all()
         
         return render_template('user/search.html', user=user, categories=categories, products=products,sv=search_value)
        
-        

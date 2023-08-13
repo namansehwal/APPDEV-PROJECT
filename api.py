@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from vault import agent, Product, Category, User
+import vault
 import json
 
 
@@ -204,8 +205,15 @@ class ProductAPI(Resource):
                 Product.query.filter_by(id=product_id).delete()
                 agent.flush()
                 agent.commit()
+<<<<<<< Updated upstream
                 return {"message": "product deleted"}, 201
             except:
                 return {"message": "product not found"}, 404
+=======
+                return {"message": "Product deleted successfully!"}, 201
+            except Exception as e:
+                return {"message": f"product not found,{e}"}, 404
+            
+>>>>>>> Stashed changes
         else:
             return {"message": "Not authorized"}
