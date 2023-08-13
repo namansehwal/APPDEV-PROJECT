@@ -15,14 +15,16 @@
     <div class="main">
       <div class="navigation">
         <h1>EcoMart</h1>
-
-        <input
-          type="text"
-          placeholder="Search here"
-          class="searchC"
-          id="inputField"
-        />
-
+        <form method="post" action="/search">
+          <input
+            name="search"
+            type="text"
+            placeholder="Search here"
+            class="searchC"
+            id="inputField"
+          />
+          <button type="submit" class="searchB"><h2>Search</h2></button>
+        </form>
         <div class="right-nav">
           <p><a href="/category">Categories</a></p>
           <p><a href="/cart/{{user.id}}">Cart</a></p>
@@ -53,6 +55,33 @@
 
       <div class="lower">
         <br />
+
+        <div class="category filterDiv">
+          <h1>Recently Added Products</h1>
+          <div class="product-list">
+            {% for product in recent_products %}
+            <div class="product" name="{{product.name}}">
+              <div class="product-image">
+                <img src="/static/assets/{{product.image }}" alt="" />
+              </div>
+              <div class="product-info">
+                <h2 class="product-name">{{product.name}}</h2>
+                <p>Best Before <b>{{product.best_before}}</b></p>
+
+                <p><b>₹{{product.price*1.25}}</b></p>
+
+                <button
+                  class="add-to-cart"
+                  onclick="location.href='product/{{product.id}}'"
+                >
+                  Buy Now
+                </button>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
         <div class="container">
           {% for category in categories %}
           <div class="category" id="{{category.name}}">
@@ -67,7 +96,9 @@
                 <div class="product-info">
                   <h2 class="product-name">{{product.name}}</h2>
                   <p>Best Before <b>{{product.best_before}}</b></p>
-                  <p><b>₹{{product.price}}</b></p>
+
+                  <p><b>₹{{product.price*1.25}}</b></p>
+
                   <button
                     class="add-to-cart"
                     onclick="location.href='product/{{product.id}}'"
@@ -84,6 +115,7 @@
       </div>
     </div>
     <script>
+<<<<<<< Updated upstream
       const inputField = document.getElementById("inputField");
 
       inputField.addEventListener("keyup", function (event) {
@@ -92,6 +124,53 @@
           window.location.href = "http://127.0.0.1:5000/search/" + enteredText;
         }
       });
+=======
+      //filtering products
+      filterSelection("all");
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+      }
+
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+            element.className += " " + arr2[i];
+          }
+        }
+      }
+
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+        }
+        element.className = arr1.join(" ");
+      }
+
+      // Add active class to the current button (highlight it)
+      var btnContainer = document.getElementById("myBtnContainer");
+      var btns = btnContainer.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+>>>>>>> Stashed changes
     </script>
   </body>
 </html>

@@ -13,15 +13,46 @@
       type="text/css"
       href="{{ url_for('static',filename='styles/header.css') }}"
     />
+    <style>
+      .nav_container {
+        max-width: 100%;
+      }
+    </style>
   </head>
 
   <body>
-    <br />
-    <div class="main">
-      <div class="navigation">
-        <h2><a href="/">EcoMart</a></h2>
+    <nav class="navbar navbar-expand-lg bg-body py-3">
+      <div class="container nav_container">
+        <a class="navbar-brand" href="/admin"
+          ><span class="fs-2"><strong>EcoMart</strong></span></a
+        ><button
+          data-bs-toggle="collapse"
+          class="navbar-toggler"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/admin/product_handler"
+                >Products</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/manage_category/">Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+            </li>
+          </ul>
+          <button class="btn btn-primary" type="button">
+            <a href="/logout" class="text-decoration-none text-white">Logout</a>
+          </button>
+        </div>
       </div>
-    </div>
+    </nav>
     <div class="container">
       <h1 class="mt-4">Add New Grocery Product</h1>
       <form method="post" enctype="multipart/form-data">
