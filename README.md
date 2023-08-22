@@ -21,10 +21,7 @@ EcoMart is built with the goal of promoting eco-friendly products and practices.
 - **Search and Filters:** Easily find products using search and filtering options.
 - **User Accounts:** Create and manage your account for a personalized experience.
 - **Shopping Cart:** Add and remove products from your cart before making a purchase.
-- **Secure Payments:** Make secure transactions using integrated payment gateways.
 - **Seller Dashboard:** For sellers to manage their products and inventory.
-- **Reviews and Ratings:** Read and provide feedback on products you've purchased.
-- **Wishlist:** Save products for future consideration.
 - **Order History:** Track your order history and delivery status.
 
 ## Installation
