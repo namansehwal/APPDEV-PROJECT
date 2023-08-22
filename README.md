@@ -36,7 +36,7 @@ To set up EcoMart locally, follow these steps:
 ```bash
 git clone https://github.com/namansehwal/EcoMart.git
 cd EcoMart
-
+```
 
 ## Usage
 
