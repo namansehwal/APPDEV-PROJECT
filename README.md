@@ -61,11 +61,11 @@ Welcome to the **APPDEV-PROJECT** repository! This repository contains code and 
 
 ## Contact
 
-[Provide your contact information so that other developers or users can reach out to you with questions, suggestions, or feedback.]
+Connect with the project creator for any questions or feedback:
 
-- Name: [Your Name]
-- Email: [Your Email]
-- GitHub: [@yourusername]
-- LinkedIn: [Your LinkedIn Profile]
+- Name: Naman Sehwal
+- Email: namansehwal@example.com
+- GitHub: [@namansehwal](https://github.com/namansehwal)
+- LinkedIn: [Naman Sehwal](https://www.linkedin.com/in/namansehwal/)
 
 Feel free to explore the code and contribute to make this app even better! 😊
