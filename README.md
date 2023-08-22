@@ -65,6 +65,29 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## :open_file_folder: What's inside?
+
+A quick look at the folder structure of this project.
+
+    .
+    APPDEV-PROJECT/
+    ┣ static/
+    ┃ ┣ assets/
+    ┃ ┣ styles/
+    ┣ templates/
+    ┃ ┣ admin/
+    ┃ ┣ login/
+    ┃ ┗ user/
+    ┣ admin_routes.py
+    ┣ api.py
+    ┣ api_methods.yaml
+    ┣ application.py
+    ┣ authentication.py
+    ┣ database.sqlite3
+    ┣ README.md
+    ┣ requirements.txt
+    ┣ user_routes.py
+    ┗ vault.py
 
 ## Contributing
 
