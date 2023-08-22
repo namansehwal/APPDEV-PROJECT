@@ -84,6 +84,10 @@ To set up EcoMart locally, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
+ 5. To run flask server
+```bash
+python application.py
+```   
 ### :open_file_folder: What's inside?
 
 A quick look at the folder structure of this project.
