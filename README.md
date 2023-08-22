@@ -89,7 +89,7 @@ A quick look at the folder structure of this project.
     ┣ user_routes.py
     ┗ vault.py
 
-## Contributing
+## Contributing 🧑‍🤝‍🧑
 
 1. Fork the Project.
 2. Create your Feature Branch: `git checkout -b feature/YourFeature`
@@ -97,11 +97,11 @@ A quick look at the folder structure of this project.
 4. Push to the Branch: `git push origin feature/YourFeature`
 5. Open a Pull Request.
 
-## License
+## License 🏛️
 
 This project is licensed under the MIT License.
 
-## Contact
+## Contact 🤙
 
 Connect with the project creator for any questions or feedback:
 
