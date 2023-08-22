@@ -43,12 +43,12 @@ cd EcoMart
 python3 -m venv venv
 ```
 3.Activate the virtual environment:
-####On macOS and Linux:
+#### On macOS and Linux:
 
 ```bash
 source venv/bin/activate
 ```
-####On Windows:
+#### On Windows:
 
 ```bash
 venv\Scripts\activate
