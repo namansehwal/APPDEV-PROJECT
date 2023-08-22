@@ -29,43 +29,49 @@ EcoMart is built with the goal of promoting eco-friendly products and practices.
 
 ## [API Documentation](https://github.com/namansehwal/EcoMart/blob/main/api_documentation.md)
 
-# :rocket: Quick start
+
+
+## :rocket: Quick Start
 
 **Run the site locally**
 
-## Installation
+### Installation
 
 To set up EcoMart locally, follow these steps:
 
 1. Clone the repository:
 
-```bash
-git clone https://github.com/namansehwal/EcoMart.git
-cd EcoMart
-```
+    ```bash
+    git clone https://github.com/namansehwal/EcoMart.git
+    cd EcoMart
+    ```
+
 2. Create a virtual environment:
 
-```bash
-python3 -m venv venv
-```
+    ```bash
+    python3 -m venv venv
+    ```
+
 3. Activate the virtual environment:
-##### On macOS and Linux:
 
-```bash
-source venv/bin/activate
-```
-##### On Windows:
+    - On macOS and Linux:
 
-```bash
-venv\Scripts\activate
-```
+        ```bash
+        source venv/bin/activate
+        ```
+
+    - On Windows:
+
+        ```bash
+        venv\Scripts\activate
+        ```
+
 4. Install the required packages:
 
-```bash
-pip install -r requirements.txt
-```
-
-## :open_file_folder: What's inside?
+    ```bash
+    pip install -r requirements.txt
+    ```
+### :open_file_folder: What's inside?
 
 A quick look at the folder structure of this project.
 
@@ -91,6 +97,9 @@ A quick look at the folder structure of this project.
 
 ## Contributing 🧑‍🤝‍🧑
 
+
+If you'd like to contribute to the project, here are the steps:
+
 1. Fork the Project.
 2. Create your Feature Branch: `git checkout -b feature/YourFeature`
 3. Commit your Changes: `git commit -m 'Add some amazing feature'`
@@ -106,7 +115,7 @@ This project is licensed under the MIT License.
 Connect with the project creator for any questions or feedback:
 
 - Name: Naman Sehwal
-- Email: namansehwal@example.com
+- Email: namansehwal@gmail.com
 - GitHub: [@namansehwal](https://github.com/namansehwal)
 - LinkedIn: [Naman Sehwal](https://www.linkedin.com/in/namansehwal/)
 
