@@ -58,13 +58,9 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-## Usage
 
-[Explain how to use the app once it's up and running. This could include screenshots, code snippets, and explanations of different app functionalities.]
 
 ## Contributing
-
-[Explain how others can contribute to the project. This can include guidelines for pull requests, coding standards, and any other relevant information.]
 
 1. Fork the Project.
 2. Create your Feature Branch: `git checkout -b feature/YourFeature`
@@ -74,7 +70,7 @@ pip install -r requirements.txt
 
 ## License
 
-[Specify the license under which the project is distributed. You can use a license badge with a link to the license file.]
+This project is licensed under the MIT License.
 
 ## Contact
 
