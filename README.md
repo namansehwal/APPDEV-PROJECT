@@ -1,45 +1,42 @@
-# APPDEV-PROJECT
+# EcoMart
 
-Welcome to the **APPDEV-PROJECT** repository! This repository contains code and resources related to a mobile app development project. The project aims to [briefly describe the main goal or purpose of the app].
-
-![App Screenshot](screenshot.png)
+EcoMart is an e-commerce platform focused on environmentally friendly and sustainable products. This platform aims to connect consumers with products that have a positive impact on the environment.
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
+- [Introduction](#introduction)
 - [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
-## About the Project
+## Introduction
 
-[Provide a brief description of the project, its objectives, and the problem it aims to solve. You can also mention the target audience for the app.]
+EcoMart is built with the goal of promoting eco-friendly products and practices. It provides a user-friendly interface for users to explore, search, and purchase products that align with sustainability values. Whether you're a conscious consumer or a seller of sustainable products, EcoMart provides a platform to connect and contribute to a greener future.
 
 ## Features
 
-[List the main features and functionalities of the app. You can use bullet points or a table.]
+- **Product Listings:** Browse through a wide range of sustainable products.
+- **Search and Filters:** Easily find products using search and filtering options.
+- **User Accounts:** Create and manage your account for a personalized experience.
+- **Shopping Cart:** Add and remove products from your cart before making a purchase.
+- **Secure Payments:** Make secure transactions using integrated payment gateways.
+- **Seller Dashboard:** For sellers to manage their products and inventory.
+- **Reviews and Ratings:** Read and provide feedback on products you've purchased.
+- **Wishlist:** Save products for future consideration.
+- **Order History:** Track your order history and delivery status.
 
-- Feature 1: [Description of feature 1]
-- Feature 2: [Description of feature 2]
-- ...
+## Installation
 
-## Getting Started
+To set up EcoMart locally, follow these steps:
 
-[Provide instructions for setting up the project on a local development environment. This should include information on prerequisites and installation steps.]
+1. Clone the repository:
 
-### Prerequisites
+```bash
+git clone https://github.com/namansehwal/EcoMart.git
+cd EcoMart
 
-- [List any software, libraries, tools, or dependencies that need to be installed before running the project.]
-
-### Installation
-
-1. [Step-by-step installation instructions.]
-2. [Any additional configuration steps.]
 
 ## Usage
 
