@@ -27,7 +27,11 @@ EcoMart is built with the goal of promoting eco-friendly products and practices.
 - **Seller Dashboard:** For sellers to manage their products and inventory.
 - **Order History:** Track your order history and delivery status.
 
-## API Documentation(_)
+## [API Documentation](https://github.com/namansehwal/EcoMart/blob/main/api_documentation.md)
+
+# :rocket: Quick start
+
+**Run the site locally**
 
 ## Installation
 
