@@ -5,6 +5,19 @@
 
 EcoMart is an e-commerce platform focused on environmentally friendly and sustainable products. This platform aims to connect consumers with products that have a positive impact on the environment.
 
+## Application Snapshots 
+
+<div class="carousel">
+    <details> <summary>Admin's Dashboard</summary>
+  <img src="https://raw.githubusercontent.com/namansehwal/EcoMart/main/static/admin_page.png" alt="Image 1" width='80%'>
+            </details>
+ <details> <summary>Homepage</summary> <img src="https://raw.githubusercontent.com/namansehwal/EcoMart/main/static/user.png" alt="Image 2"  width='80%'>   </details>
+  <details><summary>Product Card</summary> <img src="https://raw.githubusercontent.com/namansehwal/EcoMart/main/static/product.png" alt="Image 3"  width='80%'>   </details>
+
+</div>
+
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
