@@ -44,7 +44,7 @@ EcoMart is built with the goal of promoting eco-friendly products and practices.
 
 
 
-## :rocket: Quick Start
+# :rocket: Quick Start
 
 **Run the site locally**
 
