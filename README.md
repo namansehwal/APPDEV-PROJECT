@@ -1,7 +1,7 @@
 ![GitHub](https://img.shields.io/github/license/namansehwal/EcoMart)
 ![GitHub repo size](https://img.shields.io/github/repo-size/namansehwal/EcoMart)
 
-# EcoMart
+# EcoMart 
 
 EcoMart is an e-commerce platform focused on environmentally friendly and sustainable products. This platform aims to connect consumers with products that have a positive impact on the environment.
 
