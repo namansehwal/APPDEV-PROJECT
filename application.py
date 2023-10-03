@@ -26,8 +26,5 @@ from user_routes import *
 
 if __name__ == '__main__':
     Bootstrap(app)
-<<<<<<< Updated upstream
     app.run(host='0.0.0.0', port=8080, debug=True)
-=======
     app.run()
->>>>>>> Stashed changes
