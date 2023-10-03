@@ -118,10 +118,7 @@ class Order_Detail(Base):
         self.total = total
         self.created_at = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-<<<<<<< Updated upstream
-
 # Base.metadata.create_all(engine)
-=======
 # # Base.metadata.create_all(engine)
->>>>>>> Stashed changes
+
 
