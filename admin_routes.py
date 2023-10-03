@@ -24,7 +24,7 @@ def image(filename):
 
 
 
-<<<<<<< Updated upstream
+
 @app.route('/admin')
 def admin():
     print(session['admin'])
@@ -32,11 +32,8 @@ def admin():
     categories = agent.query(Category).all()
     products = agent.query(Product).all()
     return render_template('admin/index.html', user=user, categories=categories, products=products)
-=======
 admin = agent.query(User).filter(User.admin == 1).first()
 
-
->>>>>>> Stashed changes
 
 
 
@@ -52,9 +49,9 @@ admin = agent.query(User).filter(User.admin == 1).first()
 
 @app.route('/admin/manage_category/', methods=['POST', 'GET'])
 def new_category():
-<<<<<<< Updated upstream
+
     if request.method == 'POST':
-=======
+
     if 'admin' not in session:
         return render_template('login/login.html')
     else:
@@ -63,7 +60,7 @@ def new_category():
             return render_template('admin/manage_category.html', admin=admin, categories=agent.query(Category).all())
         
         if request.method == 'POST':
->>>>>>> Stashed changes
+
         # Get category information from the form data
             name = request.form['name']
             file = request.files['file']
@@ -74,7 +71,7 @@ def new_category():
             if filename:
                 image = '/static/' + filename
 
-<<<<<<< Updated upstream
+
         # Create a new category and add it to the database
         agent.add(Category(name=name, image=image))
         agent.commit()
@@ -83,15 +80,14 @@ def new_category():
     elif request.method == 'GET':
         # Fetch all categories and display them on the page
         return render_template('admin/manage_category.html', categories=agent.query(Category).all())
-=======
+
             # Create a new category and add it to the database
             agent.add(Category(name=name, image=filename))
             agent.commit()
             return redirect('/admin/manage_category/')
 
     
-        
->>>>>>> Stashed changes
+
 
 @app.route('/admin/manage_category/delete/<int:cid>', methods=['POST', 'GET'])
 def category_delete(cid):
@@ -162,7 +158,6 @@ def edit_product(pid):
         product = agent.query(Product).filter(Product.id == pid).first()
         return render_template('admin/edit_product.html', product=product)
 
-<<<<<<< Updated upstream
 @app.route('/admin/product/delete/<int:pid>')
 def del_product(pid):
     if request.method == 'GET':
@@ -194,9 +189,6 @@ def summary():
     return render_template('admin/summary.html')
 
 
-=======
->>>>>>> Stashed changes
- 
 @app.route('/admin')   
 @app.route('/admin/dashboard/', methods=['POST', 'GET'])
 def dashboard():
